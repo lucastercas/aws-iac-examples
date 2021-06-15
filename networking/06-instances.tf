@@ -10,9 +10,10 @@ resource "aws_instance" "public_ssh_bastion" {
     aws_security_group.public_access.id
   ]
 
+  # So the bastion can access other instances
   provisioner "file" {
-    source      = "~/.ssh/id_rsa.pub"
-    destination = "~/ubuntu/id_rsa.pub"
+    source      = "~/.ssh/id_rsa"
+    destination = "/home/ubuntu/id_rsa"
     connection {
       type        = "ssh"
       host        = self.public_ip

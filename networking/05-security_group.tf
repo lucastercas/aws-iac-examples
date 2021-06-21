@@ -24,10 +24,10 @@ resource "aws_security_group" "public_ssh_access" {
   }
 }
 
-resource "aws_security_group" "private_access" {
-  name        = "private access"
+resource "aws_security_group" "private_ssh_access" {
+  name        = "private_ssh_access"
   vpc_id      = aws_vpc.main.id
-  description = "Private Access SG"
+  description = "Private SSH Access SG"
   ingress {
     description = "SSH Access from public_ssh_access_sg"
     from_port   = 22
@@ -46,7 +46,7 @@ resource "aws_security_group" "private_access" {
     ipv6_cidr_blocks = ["::/0"]
   }
   tags = {
-    Name        = "private_access_sg"
+    Name        = "private_ssh_access_sg"
     Environment = "learning"
   }
 }

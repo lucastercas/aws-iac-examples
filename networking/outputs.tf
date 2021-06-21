@@ -21,5 +21,8 @@ output "security_groups" {
     public_ssh = {
       id = aws_security_group.public_ssh_access.id
     }
+    private_ssh = {
+      id = aws_security_group.private_ssh_access.id
+    }
   }
 }

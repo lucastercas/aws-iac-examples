@@ -2,13 +2,50 @@ resource "aws_instance" "cp_lb" {
   count         = 1
   instance_type = "t2.micro"
   ami           = data.aws_ami.ubuntu.id
+  key_name      = "lucas.tercas@objective"
 
-  subnet_id = aws_subnet.private_subnet.id
+  subnet_id = data.aws_subnet.public_1a.id
   vpc_security_group_ids = [
-    aws_security_group.cp_lb_sg.id
+    data.aws_security_group.public_ssh_access.id,
+    aws_security_group.master_lb_sg.id,
   ]
 
   tags = {
-    Name = "cp_lb-${count.index}"
+    Name        = "master-lb-${count.index}"
+    Environment = "learning"
+  }
+}
+
+resource "aws_instance" "master" {
+  count         = 1
+  instance_type = "t2.medium"
+  ami           = data.aws_ami.ubuntu.id
+  key_name      = "lucas.tercas@objective"
+
+  subnet_id = data.aws_subnet.public_1a.id
+  vpc_security_group_ids = [
+    data.aws_security_group.public_ssh_access.id,
+  ]
+
+  tags = {
+    Name        = "master-${count.index}"
+    Environment = "learning"
+  }
+}
+
+resource "aws_instance" "etcd" {
+  count         = 0
+  instance_type = "t2.micro"
+  ami           = data.aws_ami.ubuntu.id
+  key_name      = "lucas.tercas@objective"
+
+  subnet_id = data.aws_subnet.public_1a.id
+  vpc_security_group_ids = [
+    data.aws_security_group.public_ssh_access.id,
+  ]
+
+  tags = {
+    Name        = "etcd-${count.index}"
+    Environment = "learning"
   }
 }

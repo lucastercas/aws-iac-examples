@@ -12,6 +12,6 @@ resource "aws_nat_gateway" "nat_gw" {
   ]
   tags = {
     Name        = "main-gw"
-    Environment = "Learning"
+    Environment = "learning"
   }
 }

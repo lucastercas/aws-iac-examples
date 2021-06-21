@@ -1,12 +1,8 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 resource "aws_key_pair" "course_key" {
   key_name   = "course_key"
   public_key = file("~/.ssh/id_rsa.pub")
   tags = {
-    Environment = "Learning"
+    Environment = "learning"
     Name        = "course-ssh-key"
   }
 }
@@ -20,7 +16,7 @@ resource "aws_instance" "public_ssh_bastion" {
   availability_zone = data.aws_availability_zones.available.names[0]
   subnet_id         = aws_subnet.public_1a.id
   vpc_security_group_ids = [
-    aws_security_group.public_access.id
+    aws_security_group.public_ssh_access.id
   ]
 
   # So the bastion can access other instances
@@ -36,7 +32,7 @@ resource "aws_instance" "public_ssh_bastion" {
   }
 
   tags = {
-    Environment = "Learning"
+    Environment = "learning"
     Name        = "public-ssh-bastion-${count.index}"
   }
 }
@@ -54,7 +50,7 @@ resource "aws_instance" "private_instance" {
   ]
 
   tags = {
-    Environment = "Learning"
+    Environment = "learning"
     Name        = "private-${count.index}"
   }
 }

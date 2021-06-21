@@ -15,8 +15,8 @@ resource "aws_s3_bucket" "terraform_state" {
     }
   }
   tags = {
-    Environment = "Learning"
-    Name = "course-terraform-state"
+    Environment = "learning"
+    Name        = "course-terraform-state"
   }
 }
 

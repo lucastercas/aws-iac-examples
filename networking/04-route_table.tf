@@ -29,15 +29,15 @@ resource "aws_route_table" "private" {
 
 resource "aws_route_table_association" "private_rtb-private_1a" {
   route_table_id = aws_route_table.private.id
-  subnet_id      = aws_subnet.private_1a.id
+  subnet_id      = aws_subnet.private_subnets["private_1a"].id
 }
 
-resource "aws_route_table_association" "private_rtb-private_1b" {
-  route_table_id = aws_route_table.private.id
-  subnet_id      = aws_subnet.private_1b.id
-}
+# resource "aws_route_table_association" "private_rtb-private_1b" {
+#   route_table_id = aws_route_table.private.id
+#   subnet_id      = aws_subnet.private_1b.id
+# }
 
-resource "aws_route_table_association" "private_rtb-private_1c" {
-  route_table_id = aws_route_table.private.id
-  subnet_id      = aws_subnet.private_1c.id
-}
+# resource "aws_route_table_association" "private_rtb-private_1c" {
+#   route_table_id = aws_route_table.private.id
+#   subnet_id      = aws_subnet.private_1c.id
+# }

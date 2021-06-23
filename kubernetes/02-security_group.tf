@@ -34,7 +34,17 @@ resource "aws_security_group" "master_node_sg" {
     content {
       from_port   = port.value
       to_port     = port.value
-      protocol    = "-1"
+      protocol    = "tcp"
+      cidr_blocks = [data.aws_vpc.vpc.cidr_block]
+    }
+  }
+  dynamic "ingress" {
+    for_each = flatten([var.control_plane_ports, var.etcd_ports, var.cni_ports])
+    iterator = port
+    content {
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = "udp"
       cidr_blocks = [data.aws_vpc.vpc.cidr_block]
     }
   }
@@ -62,7 +72,17 @@ resource "aws_security_group" "worker_node_sg" {
     content {
       from_port   = port.value
       to_port     = port.value
-      protocol    = "-1"
+      protocol    = "tcp"
+      cidr_blocks = [data.aws_vpc.vpc.cidr_block]
+    }
+  }
+  dynamic "ingress" {
+    for_each = flatten([var.worker_ports, var.cni_ports])
+    iterator = port
+    content {
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = "udp"
       cidr_blocks = [data.aws_vpc.vpc.cidr_block]
     }
   }

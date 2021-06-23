@@ -5,16 +5,16 @@ output "vpc" {
   }
 }
 
-output "subnets" {
-  value = {
-    public_1a = {
-      id = aws_subnet.public_1a.id
-    }
-    private_1a = {
-      id = aws_subnet.private_1a.id
-    }
-  }
-}
+# output "subnets" {
+#   value = {
+#     public_1a = {
+#       id = aws_subnet.public_1a.id
+#     }
+#     private_1a = {
+#       id = aws_subnet.private_1a.id
+#     }
+#   }
+# }
 
 output "security_groups" {
   value = {

@@ -15,7 +15,7 @@ variable "control_plane_ports" {
 
 variable "etcd_ports" {
   type    = list(number)
-  default = [2379, 230]
+  default = [2379, 2380]
 }
 
 variable "worker_ports" {

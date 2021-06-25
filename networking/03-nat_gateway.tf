@@ -2,6 +2,10 @@ resource "aws_eip" "nat_gw_ip" {
   depends_on = [
     aws_internet_gateway.main_igw
   ]
+  tags = {
+    Name        = "nat_gw_ip"
+    Environment = "learning"
+  }
 }
 
 resource "aws_nat_gateway" "nat_gw" {

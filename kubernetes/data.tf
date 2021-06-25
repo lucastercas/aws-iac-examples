@@ -40,7 +40,7 @@ data "aws_subnet" "public_1a" {
 }
 
 data "aws_security_group" "public_ssh_access" {
-    filter {
+  filter {
     name   = "vpc-id"
     values = [data.aws_vpc.vpc.id]
   }

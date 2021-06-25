@@ -1,28 +1,8 @@
-output "vpc" {
+output "nat_gateway" {
   value = {
-    id         = aws_vpc.main.id,
-    cidr_block = aws_vpc.main.cidr_block
-  }
-}
-
-# output "subnets" {
-#   value = {
-#     public_1a = {
-#       id = aws_subnet.public_1a.id
-#     }
-#     private_1a = {
-#       id = aws_subnet.private_1a.id
-#     }
-#   }
-# }
-
-output "security_groups" {
-  value = {
-    public_ssh = {
-      id = aws_security_group.public_ssh_access.id
-    }
-    private_ssh = {
-      id = aws_security_group.private_ssh_access.id
-    }
+    "Public IP" = aws_eip.nat_gw_ip.public_ip
+    "Public DNS" = aws_eip.nat_gw_ip.public_dns
+    "Private IP" = aws_eip.nat_gw_ip.private_dns
+    "Private DNS" = aws_eip.nat_gw_ip.private_dns
   }
 }

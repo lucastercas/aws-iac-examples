@@ -1,21 +1,21 @@
 resource "aws_instance" "cp_lb" {
-  count         = 1
+  count         = 0
   instance_type = "t2.micro"
   ami           = data.aws_ami.ubuntu.id
   key_name      = var.key_name
   subnet_id = data.aws_subnet.public_1a.id
   vpc_security_group_ids = [
     data.aws_security_group.public_ssh_access.id,
-    aws_security_group.master_node_sg.id,
+    aws_security_group.controlplane_loadbalancer.id,
   ]
   tags = {
     Name        = "master-lb-${count.index}"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }
 
 resource "aws_instance" "master" {
-  count         = 1
+  count         = 0
   instance_type = "t2.medium"
   ami           = data.aws_ami.ubuntu.id
   key_name      = var.key_name
@@ -26,12 +26,12 @@ resource "aws_instance" "master" {
   ]
   tags = {
     Name        = "master-${count.index}"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }
 
 resource "aws_instance" "worker" {
-  count         = 1
+  count         = 0
   instance_type = "t2.medium"
   ami           = data.aws_ami.ubuntu.id
   key_name      = var.key_name
@@ -42,7 +42,7 @@ resource "aws_instance" "worker" {
   ]
   tags = {
     Name        = "worker-${count.index}"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }
 
@@ -57,6 +57,6 @@ resource "aws_instance" "etcd" {
   ]
   tags = {
     Name        = "etcd-${count.index}"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }

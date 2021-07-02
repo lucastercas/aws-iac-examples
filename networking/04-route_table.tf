@@ -6,7 +6,7 @@ resource "aws_route_table" "public" {
   }
   tags = {
     Name        = "course_public_rtb"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }
 
@@ -15,23 +15,24 @@ resource "aws_main_route_table_association" "rtb_association" {
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.main.id
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat_gw.id
-  }
-  tags = {
-    Name        = "course_private_rtb"
-    Environment = "learning"
-  }
-}
+#resource "aws_route_table" "private" {
+#  vpc_id = aws_vpc.main.id
+#  route {
+#    cidr_block     = "0.0.0.0/0"
+#    nat_gateway_id = aws_nat_gateway.nat_gw.id
+#  }
+#  tags = {
+#    Name        = "course_private_rtb"
+#    Environment = "iac_lab"
+#  }
+#}
 
-resource "aws_route_table_association" "private_rtb-private_1a" {
-  route_table_id = aws_route_table.private.id
-  subnet_id      = aws_subnet.private_subnets["private_1a"].id
-}
+#resource "aws_route_table_association" "private_rtb-private_1a" {
+#  route_table_id = aws_route_table.private.id
+#  subnet_id      = aws_subnet.private_subnets["private_1a"].id
+#}
 
+# To-Do: Migrate to for_each
 # resource "aws_route_table_association" "private_rtb-private_1b" {
 #   route_table_id = aws_route_table.private.id
 #   subnet_id      = aws_subnet.private_1b.id

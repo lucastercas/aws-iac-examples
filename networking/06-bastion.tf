@@ -2,7 +2,7 @@
 #   key_name   = "course_key"
 #   public_key = file("~/.ssh/id_rsa.pub")
 #   tags = {
-#     Environment = "learning"
+#     Environment = "iac_lab"
 #     Name        = "course-ssh-key"
 #   }
 # }
@@ -32,7 +32,7 @@
 #   }
 
 #   tags = {
-#     Environment = "learning"
+#     Environment = "iac_lab"
 #     Name        = "public-ssh-bastion-${count.index}"
 #   }
 # }
@@ -50,7 +50,7 @@
 #   ]
 
 #   tags = {
-#     Environment = "learning"
+#     Environment = "iac_lab"
 #     Name        = "private-${count.index}"
 #   }
 # }

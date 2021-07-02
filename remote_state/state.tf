@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "terraform_state" {
     }
   }
   tags = {
-    Environment = "learning"
+    Environment = "iac_lab"
     Name        = "course-terraform-state"
   }
 }
@@ -30,12 +30,12 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
   }
 }
 
-terraform {
-  backend "s3" {
-    bucket         = "lucasmtercas-course-terraform-state"
-    key            = "global/s3/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "course_terraform_state_lock"
-    encrypt        = true
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket         = "lucasmtercas-course-terraform-state"
+#     key            = "global/s3/terraform.tfstate"
+#     region         = "us-east-1"
+#     dynamodb_table = "course_terraform_state_lock"
+#     encrypt        = true
+#   }
+# }

@@ -18,6 +18,6 @@ resource "aws_network_acl" "main" {
   }
   tags = {
     Name        = "main_network_acl"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }

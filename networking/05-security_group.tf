@@ -20,7 +20,7 @@ resource "aws_security_group" "public_ssh_access" {
   }
   tags = {
     Name        = "public_ssh_access_sg"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }
 
@@ -47,6 +47,6 @@ resource "aws_security_group" "private_ssh_access" {
   }
   tags = {
     Name        = "private_ssh_access_sg"
-    Environment = "learning"
+    Environment = "iac_lab"
   }
 }

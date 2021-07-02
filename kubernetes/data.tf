@@ -28,7 +28,7 @@ data "aws_ami" "ubuntu" {
 ### Remote States Lookups ###
 data "aws_vpc" "vpc" {
   tags = {
-    Name = "learning_vpc"
+    Name = "iac_lab_vpc"
   }
 }
 
@@ -45,7 +45,7 @@ data "aws_security_group" "public_ssh_access" {
     values = [data.aws_vpc.vpc.id]
   }
   tags = {
-    Environment = "learning"
+    Environment = "iac_lab"
     Name        = "public_ssh_access_sg"
   }
 }

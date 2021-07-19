@@ -60,3 +60,4 @@ resource "aws_instance" "etcd" {
     Environment = "iac_lab"
   }
 }
+

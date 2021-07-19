@@ -29,3 +29,4 @@ resource "aws_subnet" "private_subnets" {
     Tier = "private"
   }
 }
+

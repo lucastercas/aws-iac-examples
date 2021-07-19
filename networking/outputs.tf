@@ -7,3 +7,9 @@
 #  }
 #}
 
+output "ssh_public_bastion" {
+  value = {
+    public_ip = aws_instance.public_ssh_bastion.*.public_ip
+  }
+}
+

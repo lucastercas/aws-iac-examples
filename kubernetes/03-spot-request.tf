@@ -10,6 +10,14 @@ resource "aws_spot_instance_request" "controlplane_loadbalancer" {
     data.aws_security_group.public_ssh_access.id,
     aws_security_group.controlplane_loadbalancer.id,
   ]
+  provisioner "local-exec" {
+    command = <<EOT
+      aws ec2 create-tags --resources ${self.spot_instance_id} --tags \
+      Key=Name,Value=k8s-master-${count.index} \
+      Key=Environment,Value=iac_lab
+    EOT 
+  }
+  # To-Do: apply tags to volumes
   tags = {
     Name = "k8s-controlplane-loadbalancer-${count.index}"
     Environment = "iac_lab"
@@ -52,3 +60,4 @@ resource "aws_spot_instance_request" "worker" {
     Environment = "iac_lab"
   }
 }
+
